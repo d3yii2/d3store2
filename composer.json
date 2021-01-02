@@ -1,20 +1,23 @@
 {
-    "name": "d3yii2/d3store2",
-    "description": "Store2",
-    "type": "library",
-    "keywords": ["yii2"],
-    "authors": [
-        {
-            "name": "Uldis Nelsons",
-            "email": "uldis@weberp.lv"
-        }
-    ],
-    "require": {
-        "yiisoft/yii2": "*"
-    },
-    "autoload": {
-        "psr-4": {
-            "d3yii2\\d3store2\\": ""
-        }
+  "name": "d3yii2/d3store2",
+  "description": "Store2",
+  "type": "library",
+  "keywords": [
+    "yii2"
+  ],
+  "authors": [
+    {
+      "name": "Uldis Nelsons",
+      "email": "uldis@weberp.lv"
     }
+  ],
+  "require": {
+    "yiisoft/yii2": "*",
+    "d3yii2/d3system": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "d3yii2\\d3store2\\": ""
+    }
+  }
 }

@@ -1,7 +1,6 @@
-#Store2"
+# Store2"
 
 ## Features
-
 
 ## Installation
 
@@ -21,9 +20,7 @@ or add
 
 to the `require` section of your `composer.json` file.
 
-
 ## Methods
-
 
 ## Usage
 

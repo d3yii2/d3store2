@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">blankon_store</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="store2_stack" view="colnames">
+<left>278</left>
+<top>113</top>
+<width>84</width>
+<height>148</height>
+<sql_create_table>CREATE TABLE `store2_stack` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `store_id` smallint(5) unsigned NOT NULL COMMENT 'Store',
+  `name` varchar(255) DEFAULT NULL COMMENT 'Stack name',
+  `notes` text COMMENT 'Notes',
+  `active` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT 'Active',
+  PRIMARY KEY (`id`),
+  KEY `store_id` (`store_id`),
+  CONSTRAINT `store_stack_ibfk_1` FOREIGN KEY (`store_id`) REFERENCES `store2_store` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="store2_store" view="colnames">
+<left>117</left>
+<top>112</top>
+<width>107</width>
+<height>148</height>
+<sql_create_table>CREATE TABLE `store2_store` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` smallint(5) unsigned NOT NULL,
+  `name` varchar(50) DEFAULT NULL COMMENT 'Store Name',
+  `address` varchar(255) DEFAULT NULL COMMENT 'Store Address',
+  `active` tinyint(4) DEFAULT '1' COMMENT 'Active',
+  PRIMARY KEY (`id`),
+  KEY `sys_company_id` (`company_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="store2_transaction" view="colnames">
+<left>407</left>
+<top>109</top>
+<width>103</width>
+<height>191</height>
+<sql_create_table>CREATE TABLE `store2_transaction` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `from_id` int(10) unsigned DEFAULT NULL COMMENT 'From stack',
+  `type` enum('In','Out','Transfer') NOT NULL COMMENT 'Type',
+  `time` timestamp NULL DEFAULT NULL COMMENT 'Time',
+  `user_id` smallint(5) unsigned DEFAULT NULL COMMENT 'User',
+  `stack_id` smallint(5) unsigned DEFAULT NULL COMMENT 'Stack',
+  `qnt` decimal(10,3) unsigned NOT NULL COMMENT 'Quantity',
+  `remain_qnt` decimal(10,3) unsigned NOT NULL COMMENT 'Remain Quantity',
+  PRIMARY KEY (`id`),
+  KEY `from_id` (`from_id`),
+  KEY `stack_id` (`stack_id`),
+  CONSTRAINT `store2_transaction_ibfk_1` FOREIGN KEY (`from_id`) REFERENCES `store2_transaction` (`id`),
+  CONSTRAINT `store2_transaction_ibfk_2` FOREIGN KEY (`stack_id`) REFERENCES `store2_stack` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="store2_tran_ref" view="colnames">
+<left>564</left>
+<top>99</top>
+<width>134</width>
+<height>131</height>
+<sql_create_table>CREATE TABLE `store2_tran_ref` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `transaction_id` int(10) unsigned NOT NULL,
+  `model_id` tinyint(5) unsigned NOT NULL,
+  `model_record_id` smallint(5) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `transaction_id` (`transaction_id`),
+  KEY `model_id` (`model_id`),
+  CONSTRAINT `store2_tran_ref_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `store2_transaction` (`id`),
+  CONSTRAINT `store2_tran_ref_ibfk_2` FOREIGN KEY (`model_id`) REFERENCES `sys_models` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="sys_models" view="colnames">
+<left>407</left>
+<top>311</top>
+<width>105</width>
+<height>114</height>
+<sql_create_table>CREATE TABLE `sys_models` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(256) NOT NULL COMMENT 'Table',
+  `class_name` varchar(256) DEFAULT NULL COMMENT 'Class',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `table_name` (`table_name`,`class_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=ascii</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

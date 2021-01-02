@@ -1,1 +1,18 @@
-{"modulename":{"value":"d3store2","name":"moduleName"},"modulenamespace":{"value":"d3yii2\\d3store2","name":"moduleNameSpace"},"messagecatalog":{"value":"store2","name":"messageCatalog"},"modulelabel":{"value":"Store2","name":"moduleLabel"}}
+{
+  "modulename": {
+    "value": "d3store2",
+    "name": "moduleName"
+  },
+  "modulenamespace": {
+    "value": "d3yii2\\d3store2",
+    "name": "moduleNameSpace"
+  },
+  "messagecatalog": {
+    "value": "store2",
+    "name": "messageCatalog"
+  },
+  "modulelabel": {
+    "value": "Store2",
+    "name": "moduleLabel"
+  }
+}
